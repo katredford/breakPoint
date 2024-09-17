@@ -1,27 +1,30 @@
-import { createContext, useCallback, useContext } from 'react';
+import { createContext, useState, useRef, useContext, useEffect } from 'react';
 import zones from './timeZones.json';
 
 interface TimeContextProps {
     getCurrentTime: (zone: string) => string;
+    timeStart: (minutes: number) => void;
+    time: number | null;
 }
 
 
 const TimeContext = createContext<TimeContextProps | undefined>(undefined);
 
 export const TimeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const [time, setTime] = useState<number | null>(null);
+
+    const timerRef = useRef<number | null>(null);
+
+
+
 
     const getCurrentTime = (zone: string): string => {
-        // const selectedZone = zones[index];
-
-        // if (!selectedZone) {
-        //   return 'Invalid time zone index';
-        // }
 
         const timestamp = Date.now();
         const date = new Date(timestamp);
 
         const formattedTime = new Intl.DateTimeFormat('en-US', {
-            timeZone: zone,  // Set timezone based on the array
+            timeZone: zone,
             // year: 'numeric',
             // month: 'long',
             // day: 'numeric',
@@ -34,8 +37,39 @@ export const TimeProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return `${formattedTime}`;
     };
 
+
+    const timeStart = (minutes: number) => {
+        if (timerRef.current) {
+            clearInterval(timerRef.current);  // Clear any existing timer
+        }
+
+        setTime(minutes * 60);
+
+
+        timerRef.current = window.setInterval(() => {
+            setTime(prevTime => {
+                if (prevTime && prevTime > 0) {
+                    return prevTime - 1
+                } else {
+                    clearInterval(timerRef.current!)
+                    return 0;
+                }
+            });
+        }, 1000);
+    }
+
+    useEffect(() => {
+        return () => {
+            if (timerRef.current) {
+                clearInterval(timerRef.current);
+            }
+        }
+    }, [])
+
     const actions = {
-        getCurrentTime
+        getCurrentTime,
+        timeStart,
+        time
     }
 
     return (
