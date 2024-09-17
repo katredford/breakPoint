@@ -1,0 +1,70 @@
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+li {
+  list-style-type: none;
+  
+
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+// GLOBAL CLASSES
+.row,
+.column {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+
+//CUSTOME 
+
+.zoneClock {
+  width: 100px;
+  background-color: orange;
+  border-radius: 10px;
+  border: 2px solid rgb(255, 213, 164);
+  color:rgb(255 253 164);
+  padding: 2px;
+}

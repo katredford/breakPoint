@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "timezone": "eastern",
+        "add": 0,
+        "name": "america/new_york"
+    },
+    {
+        "id": 2,
+        "timezone": "central",
+        "add": 1,
+        "name": "america/chicago"
+    },
+    {
+        "id": 3,
+        "timezone": "mountain",
+        "add": 2,
+        "name": "america/denver"
+    },
+    {
+        "id": 4,
+        "timezone": "pacific",
+        "add": 3,
+        "name": "america/los_angeles"
+    }
+]
