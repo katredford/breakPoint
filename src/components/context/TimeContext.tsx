@@ -1,10 +1,12 @@
 import { createContext, useState, useRef, useContext, useEffect } from 'react';
-import zones from './timeZones.json';
+
 
 interface TimeContextProps {
-    getCurrentTime: (zone: string) => string;
-    timeStart: (minutes: number) => void;
     time: number | null;
+    minutesToAdd: number;
+    timeStart: (minutes: number) => void;
+    setMinutesToAdd: (minutes: number) => void;
+    getCurrentTime: (zone: string) => string;
 }
 
 
@@ -12,13 +14,13 @@ const TimeContext = createContext<TimeContextProps | undefined>(undefined);
 
 export const TimeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [time, setTime] = useState<number | null>(null);
-
+    const [minutesToAdd, setMinutesToAdd] = useState<number>(0)
     const timerRef = useRef<number | null>(null);
 
 
 
 
-    const getCurrentTime = (zone: string): string => {
+    const getCurrentTime = (zone: string) => {
 
         const timestamp = Date.now();
         const date = new Date(timestamp);
@@ -35,17 +37,20 @@ export const TimeProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }).format(date);
 
         return `${formattedTime}`;
+
     };
 
 
     const timeStart = (minutes: number) => {
+
+        setMinutesToAdd(minutes)
         if (timerRef.current) {
-            clearInterval(timerRef.current);  // Clear any existing timer
+            clearInterval(timerRef.current);
         }
 
         setTime(minutes * 60);
 
-
+        setMinutesToAdd(minutes)
         timerRef.current = window.setInterval(() => {
             setTime(prevTime => {
                 if (prevTime && prevTime > 0) {
@@ -69,7 +74,9 @@ export const TimeProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const actions = {
         getCurrentTime,
         timeStart,
-        time
+        time,
+        minutesToAdd,
+        setMinutesToAdd
     }
 
     return (

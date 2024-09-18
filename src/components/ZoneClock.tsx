@@ -4,7 +4,7 @@ interface ZoneProps {
     timezone: string;
 }
 
-
+//this is the current time in the timezone recieved through the props
 const ZoneClock: React.FC<ZoneProps> = ({ time, timezone }) => {
 
 

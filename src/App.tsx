@@ -1,8 +1,8 @@
 
-import zones from "./components/context/timeZones.json"
+
 import ClockBox from "./components/ClockBox";
 import CountDown from "./components/CountDown";
-
+import BreakBox from "./components/BreakBox";
 function App() {
 
 
@@ -13,6 +13,7 @@ console
     <>
     <ClockBox />
     <CountDown />
+    <BreakBox />
     </>
   )
 }

@@ -1,13 +1,17 @@
 
 import { useTime } from './context/TimeContext';
 
+
+//this shows 3 buttons that start the timeStart function and displays
+//a clock that counts down from whatever start number gets passed as
+//an argument
 const CountDown = () => {
 
     const { timeStart, time } = useTime();
 
 
     const formatTime = (time: number | null) => {
-        if (time === null) return ;
+        if (time === null) return;
         const minutes = Math.floor(time / 60);
         const seconds = time % 60;
         return `${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
