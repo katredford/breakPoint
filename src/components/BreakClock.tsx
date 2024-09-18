@@ -4,10 +4,11 @@ import { useTime } from './context/TimeContext';
 interface BreakProps {
     time: string;
     timezone: string;
+    className: string;
 }
 
 //this shows the clock with whatever minutes were clicked added to it
-const BreakClock: React.FC<BreakProps> = ({ time, timezone }) => {
+const BreakClock: React.FC<BreakProps> = ({ time, timezone, className }) => {
     const { minutesToAdd } = useTime();
 
 
@@ -52,15 +53,18 @@ const BreakClock: React.FC<BreakProps> = ({ time, timezone }) => {
 
     return (
         <>
-            <div className="row column align-center zoneClock">
-
-                <li>
-                    {timezone.toUpperCase()}
+            <div className={`row column  breakClock ${className}`}>
+                <li className={`row zoneTitle justify-center ${className}`}>
+                    {timezone.toUpperCase()} 
                 </li>
-
-                <li>
+                <div className='row column align-center'>
+                <li className='timeText'>
+                    Break Over At:
+                </li>
+                <li className='timeText'>
                     {formattedBreakTime}
                 </li>
+                </div>
             </div>
         </>
     )

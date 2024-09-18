@@ -8,11 +8,31 @@ const BreakBox = () => {
 
     const { getCurrentTime } = useTime();
 
+    const getZoneClass = (timezone: string) => {
+        switch (timezone.toLowerCase()) {
+            case 'eastern':
+                return 'eastern';
+            case 'central':
+                return 'central';
+            case 'mountain':
+                return 'mountain';
+            case 'pacific':
+                return 'pacific';
+            default:
+                return 'none';
+        }
+    }
+
     return (
         <>
-            <div className='row justify-between'>
+            <div className='row column align-center'>
                 {zones.map(zone => (
-                    <BreakClock key={zone.id} time={getCurrentTime(zone.name)} timezone={zone.timezone} />
+                    <BreakClock
+                        key={zone.id}
+                        time={getCurrentTime(zone.name)}
+                        timezone={zone.timezone}
+                        className={getZoneClass(zone.timezone)}
+                    />
                 ))}
             </div>
         </>

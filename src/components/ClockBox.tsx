@@ -2,19 +2,38 @@
 
 import zones from './context/timeZones.json';
 import { useTime } from './context/TimeContext';
-import ZoneClock from './ZoneClock';
+import Clock from './Clock';
 
 // this shows the current time in different US timezones
 const ClockBox = () => {
 
     const { getCurrentTime } = useTime();
 
+    const getZoneClass = (timezone: string) => {
+        switch (timezone.toLowerCase()){
+            case 'eastern':
+                return 'eastern';
+            case 'central':
+                return 'central';
+            case 'mountain':
+                return 'mountain';
+            case 'pacific':
+                return 'pacific';
+            default:
+                return 'zoneClock';
+        }
+    }
 
     return (
         <>
             <div className='row justify-between'>
                 {zones.map(zone => (
-                    <ZoneClock key={zone.id} time={getCurrentTime(zone.name)} timezone={zone.timezone} />
+                    <Clock 
+                    key={zone.id} 
+                    time={getCurrentTime(zone.name)} 
+                    timezone={zone.timezone} 
+                    className={getZoneClass(zone.timezone)}
+                    />
                 ))}
             </div>
 
