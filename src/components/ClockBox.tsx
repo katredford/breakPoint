@@ -26,7 +26,9 @@ const ClockBox = () => {
 
     return (
         <>
-            <div className='row justify-between'>
+            <div className='row justify-center'>
+
+            <div className='row justify-between clockBox'>
                 {zones.map(zone => (
                     <Clock 
                     key={zone.id} 
@@ -35,6 +37,7 @@ const ClockBox = () => {
                     className={getZoneClass(zone.timezone)}
                     />
                 ))}
+            </div>
             </div>
 
         </>

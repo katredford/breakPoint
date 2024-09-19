@@ -25,7 +25,9 @@ const BreakBox = () => {
 
     return (
         <>
-            <div className='row column align-center'>
+        <div className='row justify-center'>
+
+            <div className='row align-center breakBox'>
                 {zones.map(zone => (
                     <BreakClock
                         key={zone.id}
@@ -35,6 +37,7 @@ const BreakBox = () => {
                     />
                 ))}
             </div>
+        </div>
         </>
     )
 }
