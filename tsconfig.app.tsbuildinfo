@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/breakbox.tsx","./src/components/breakclock.tsx","./src/components/clock.tsx","./src/components/clockbox.tsx","./src/components/countdown.tsx","./src/components/context/timecontext.tsx"],"version":"5.6.2"}

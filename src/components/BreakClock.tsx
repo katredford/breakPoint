@@ -61,7 +61,7 @@ const BreakClock: React.FC<BreakProps> = ({ time, timezone, className }) => {
                 <li className='timeText'>
                     Break Over At:
                 </li>
-                <li className='timeText'>
+                <li className='time'>
                     {formattedBreakTime}
                 </li>
                 </div>
